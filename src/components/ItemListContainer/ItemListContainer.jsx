@@ -5,7 +5,7 @@ import { pedirDatos } from "../../helpers/pedirDatos";
 import ItemList from "../ItemList/ItemList";
 import { useParams } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, limit, query, where } from "firebase/firestore";
 import { db } from "../../firebase/config";
 
 const ItemListContainer = () => {
@@ -19,14 +19,17 @@ const ItemListContainer = () => {
   useEffect(() => {
     setLoading(true);
 
-    const productosRef = collection(db, "Prenda")
+    const productosRef = collection(db, "producto")
+    const q = categoryId  
+      ? query(productosRef, where("id_categoria","==",categoryId), limit(20))
+      : productosRef
 
-    getDocs(productosRef)
+    getDocs(q)
     .then((resp) => {
-        const items = resp.docs.map((doc) => doc.data())
+        const items = resp.docs.map((doc) => ({...doc.data(), id: doc.id}))
 
-      
         setProductos(items)
+
     })
     .catch(e => console.log(e))
     .finally(()=> setLoading(false))
@@ -54,11 +57,11 @@ const ItemListContainer = () => {
 
 
   return (
-    <div className="container -my-5">
+    <div className="container border border-1 rounded my-5">
       {
          loading
          ? <h2>Cargando....</h2>
-         :<ItemList items={productos} />
+         :<ItemList  items={productos} />
       }
     </div>
   );

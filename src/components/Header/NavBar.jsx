@@ -4,6 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
+import CartWidget from '../CartWidget/CartWidget';
 
 const NavBar = () =>{
 
@@ -11,7 +12,7 @@ const NavBar = () =>{
        <>
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
-        <Link className='navbar-brand' to="/">Tienda Ropa Rapa</Link>
+        <Link className='navbar-brand' to="/">Tienda Ropa Rara</Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
@@ -34,7 +35,12 @@ const NavBar = () =>{
 
             
             </Nav.Link>
+            <Link className='nav-link' to="/cart">Carrito de compras</Link>
+          
+            {/* <Link className='nav-link' to="/login">Iniciar Sesión</Link> */}
+
           </Nav>
+          <CartWidget/>
         </Navbar.Collapse>
       </Container>
     </Navbar>

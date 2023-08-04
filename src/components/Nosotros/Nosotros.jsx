@@ -1,6 +1,9 @@
 const Nosotros = () => {
     return (
-        <h1>Nosotros</h1>
+        <div className="container my-5">
+            <h2>Nosotros</h2>
+            <hr />
+            </div>
     )
 }
 

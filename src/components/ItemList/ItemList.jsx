@@ -3,7 +3,6 @@ import ItemCard from "../ItemCard/ItemCard";
 
 const ItemnList = ({ items }) => {
 
-  console.log(items)
   return (
     <div className="container my-5">
       <h1>Listado de productos</h1>
@@ -22,7 +21,7 @@ const ItemnList = ({ items }) => {
 
       <div className="row">
         {items.map((prenda) => (
-          <ItemCard key={prenda.ID} {...prenda} />
+          <ItemCard key={prenda.id} {...prenda} />
         ))}
       </div>
 
